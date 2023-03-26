@@ -4,7 +4,7 @@ plugins {
 
 version '1.0.0'
 
-def modName = 'ModTemplate'
+def modName = 'ImmersivePlanets'
 def starmadeDirectory = 'C:/Program Files (x86)/Steam/steamapps/common/StarMade/StarMade/' //Change this to your StarMade directory
 
 repositories {
@@ -24,7 +24,7 @@ jar {
     }
 
     from {
-        configurations.compile.collect {
+        configurations.runtimeClasspath.collect {
             if(!it.getPath().contains("StarMade") && it.getName().endsWith(".jar")) it.isDirectory() ? it : zipTree(it)
             else return null;
         }

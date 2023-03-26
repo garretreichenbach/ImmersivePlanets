@@ -1,7 +1,7 @@
-package thederpgamer.modtemplate.manager;
+package thederpgamer.immersiveplanets.manager;
 
 import api.mod.config.FileConfiguration;
-import thederpgamer.modtemplate.ModTemplate;
+import thederpgamer.immersiveplanets.ImmersivePlanets;
 
 public class ConfigManager {
 
@@ -11,7 +11,7 @@ public class ConfigManager {
 			"max-world-logs: 5"
 	};
 
-	public static void initialize(ModTemplate instance) {
+	public static void initialize(ImmersivePlanets instance) {
 		mainConfig = instance.getConfig("config");
 		mainConfig.saveDefault(defaultMainConfig);
 	}

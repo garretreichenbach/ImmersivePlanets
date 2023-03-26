@@ -1,4 +1,4 @@
-package thederpgamer.modtemplate.utils;
+package thederpgamer.immersiveplanets.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

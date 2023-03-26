@@ -1,17 +1,17 @@
-package thederpgamer.modtemplate.element.block.systems.chambers;
+package thederpgamer.immersiveplanets.element.block.systems.chambers;
 
 import api.config.BlockConfig;
 import org.schema.game.common.data.blockeffects.config.StatusEffectType;
 import org.schema.game.common.data.element.ElementInformation;
-import thederpgamer.modtemplate.ModTemplate;
-import thederpgamer.modtemplate.element.ElementManager;
+import thederpgamer.immersiveplanets.ImmersivePlanets;
+import thederpgamer.immersiveplanets.element.ElementManager;
 
 public abstract class ChamberBlock {
 
 	protected ElementInformation blockInfo;
 
 	public ChamberBlock(String name, short generalId, float chamberCapacity, StatusEffectType... statusEffects) {
-		blockInfo = BlockConfig.newChamber(ModTemplate.getInstance(), name, generalId, statusEffects);
+		blockInfo = BlockConfig.newChamber(ImmersivePlanets.getInstance(), name, generalId, statusEffects);
 		blockInfo.chamberCapacity = chamberCapacity;
 		ElementManager.addChamber(this);
 	}

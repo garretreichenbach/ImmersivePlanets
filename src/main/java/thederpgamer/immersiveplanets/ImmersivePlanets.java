@@ -1,56 +1,64 @@
-package thederpgamer.modtemplate;
+package thederpgamer.immersiveplanets;
 
+import api.DebugFile;
 import api.config.BlockConfig;
 import api.mod.StarMod;
 import org.apache.commons.io.IOUtils;
 import org.schema.schine.resource.ResourceLoader;
-import thederpgamer.modtemplate.element.ElementManager;
-import thederpgamer.modtemplate.element.items.ExampleItem;
-import thederpgamer.modtemplate.manager.ConfigManager;
-import thederpgamer.modtemplate.manager.EventManager;
-import thederpgamer.modtemplate.manager.PacketManager;
-import thederpgamer.modtemplate.manager.ResourceManager;
-import thederpgamer.modtemplate.utils.DataUtils;
+import thederpgamer.immersiveplanets.element.ElementManager;
+import thederpgamer.immersiveplanets.element.items.ExampleItem;
+import thederpgamer.immersiveplanets.manager.ConfigManager;
+import thederpgamer.immersiveplanets.manager.EventManager;
+import thederpgamer.immersiveplanets.manager.PacketManager;
+import thederpgamer.immersiveplanets.manager.ResourceManager;
+import thederpgamer.immersiveplanets.utils.DataUtils;
 
 import javax.annotation.Nullable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-public class ModTemplate extends StarMod {
-
+public class ImmersivePlanets extends StarMod {
 	//Instance
-	private static ModTemplate instance;
-	public static ModTemplate getInstance() {
+	private static ImmersivePlanets instance;
+	public static ImmersivePlanets getInstance() {
 		return instance;
 	}
 	public static void main(String[] args) {}
-	public ModTemplate() {}
+	public ImmersivePlanets() {}
 
 	//Logging
 	private static Logger log;
+
 	public static void logInfo(String message) {
+		DebugFile.log(message, instance);
 		log.info("[" + instance.getName() + "]" + message);
 	}
 
 	public static void logWarning(String message, @Nullable Exception exception) {
 		log.warning("[" + instance.getName() + "]" + message);
-		if(exception != null) exception.printStackTrace();
+		if(exception != null) {
+			DebugFile.logError(exception, instance);
+			exception.printStackTrace();
+		}
 	}
 
 	public static void logError(String message, @Nullable Exception exception) {
 		log.severe("[" + instance.getName() + "]" + message);
-		if(exception != null) exception.printStackTrace();
+		if(exception != null) {
+			DebugFile.logError(exception, instance);
+			exception.printStackTrace();
+		}
 	}
 
 	//Other
 	private final String[] overwriteClasses = { //Use this to overwrite specific vanilla classes
-
 	};
 
 	@Override
@@ -82,7 +90,7 @@ public class ModTemplate extends StarMod {
 	private byte[] overwriteClass(String className, byte[] byteCode) {
 		byte[] bytes = null;
 		try {
-			ZipInputStream file = new ZipInputStream(new FileInputStream(this.getSkeleton().getJarFile()));
+			ZipInputStream file = new ZipInputStream(new FileInputStream(getSkeleton().getJarFile()));
 			while(true) {
 				ZipEntry nextEntry = file.getNextEntry();
 				if(nextEntry == null) break;
@@ -101,23 +109,21 @@ public class ModTemplate extends StarMod {
 		File logsFolder = new File(logFolderPath);
 		if(!logsFolder.exists()) logsFolder.mkdirs();
 		else {
-			if(logsFolder.listFiles() != null && logsFolder.listFiles().length > 0) {
-				File[] logFiles = new File[logsFolder.listFiles().length];
+			if(logsFolder.listFiles() != null && Objects.requireNonNull(logsFolder.listFiles()).length > 0) {
+				File[] logFiles = new File[Objects.requireNonNull(logsFolder.listFiles()).length];
 				int j = logFiles.length - 1;
 				for(int i = 0; i < logFiles.length && j >= 0; i++) {
 					try {
 						if(!logFiles[i].getName().endsWith(".lck")) logFiles[j] = logFiles[i];
 						else logFiles[i].delete();
 						j--;
-					} catch(Exception ignored) { }
+					} catch(Exception ignored) {}
 				}
-
 				//Trim null entries
 				int nullCount = 0;
 				for(File value : logFiles) {
-					if(value == null) nullCount ++;
+					if(value == null) nullCount++;
 				}
-
 				File[] trimmedLogFiles = new File[logFiles.length - nullCount];
 				int l = 0;
 				for(File file : logFiles) {
@@ -126,7 +132,6 @@ public class ModTemplate extends StarMod {
 						l++;
 					}
 				}
-
 				for(File logFile : trimmedLogFiles) {
 					if(logFile == null) continue;
 					String fileName = logFile.getName().replace(".txt", "");

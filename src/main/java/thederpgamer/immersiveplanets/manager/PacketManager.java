@@ -1,7 +1,7 @@
-package thederpgamer.modtemplate.manager;
+package thederpgamer.immersiveplanets.manager;
 
 import api.network.packets.PacketUtil;
-import thederpgamer.modtemplate.network.client.ExampleClientPacket;
+import thederpgamer.immersiveplanets.network.client.ExampleClientPacket;
 
 public class PacketManager {
 

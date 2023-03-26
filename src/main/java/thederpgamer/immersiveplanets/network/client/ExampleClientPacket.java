@@ -1,10 +1,10 @@
-package thederpgamer.modtemplate.network.client;
+package thederpgamer.immersiveplanets.network.client;
 
 import api.network.Packet;
 import api.network.PacketReadBuffer;
 import api.network.PacketWriteBuffer;
 import org.schema.game.common.data.player.PlayerState;
-import thederpgamer.modtemplate.ModTemplate;
+import thederpgamer.immersiveplanets.ImmersivePlanets;
 
 import java.io.IOException;
 
@@ -37,6 +37,6 @@ public class ExampleClientPacket extends Packet {
 
 	@Override
 	public void processPacketOnServer(PlayerState playerState) {
-		ModTemplate.logInfo("Received packet from " + playerState.getName() + " with message: " + message);
+		ImmersivePlanets.logInfo("Received packet from " + playerState.getName() + " with message: " + message);
 	}
 }

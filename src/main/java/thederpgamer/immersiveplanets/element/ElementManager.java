@@ -1,13 +1,13 @@
-package thederpgamer.modtemplate.element;
+package thederpgamer.immersiveplanets.element;
 
 import api.config.BlockConfig;
 import org.apache.commons.lang3.StringUtils;
 import org.schema.game.common.data.element.ElementCategory;
 import org.schema.game.common.data.element.ElementInformation;
 import org.schema.game.common.data.element.ElementKeyMap;
-import thederpgamer.modtemplate.element.block.Block;
-import thederpgamer.modtemplate.element.block.systems.chambers.ChamberBlock;
-import thederpgamer.modtemplate.element.items.Item;
+import thederpgamer.immersiveplanets.element.block.Block;
+import thederpgamer.immersiveplanets.element.block.systems.chambers.ChamberBlock;
+import thederpgamer.immersiveplanets.element.items.Item;
 
 import java.util.ArrayList;
 

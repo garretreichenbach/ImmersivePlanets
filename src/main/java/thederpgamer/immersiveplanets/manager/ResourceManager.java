@@ -1,17 +1,17 @@
-package thederpgamer.modtemplate.manager;
+package thederpgamer.immersiveplanets.manager;
 
 import api.utils.textures.StarLoaderTexture;
 import org.schema.schine.graphicsengine.forms.Mesh;
 import org.schema.schine.graphicsengine.forms.Sprite;
-import thederpgamer.modtemplate.ModTemplate;
+import thederpgamer.immersiveplanets.ImmersivePlanets;
 
 import java.util.HashMap;
 
 public class ResourceManager {
 
-	private static final String TEXTURE_PATH = "thederpgamer/modtemplate/resources/textures/";
-	private static final String SPRITE_PATH = "thederpgamer/modtemplate/resources/sprites/";
-	private static final String MODEL_PATH = "thederpgamer/modtemplate/resources/models/";
+	private static final String TEXTURE_PATH = "thederpgamer/immersiveplanets/resources/textures/";
+	private static final String SPRITE_PATH = "thederpgamer/immersiveplanets/resources/sprites/";
+	private static final String MODEL_PATH = "thederpgamer/immersiveplanets/resources/models/";
 
 	private static final String[] textureNames = {
 
@@ -37,21 +37,21 @@ public class ResourceManager {
 				for(String texturePath : textureNames) {
 					String textureName = texturePath.substring(texturePath.lastIndexOf('/') + 1);
 					try {
-						if(textureName.endsWith("icon")) textureMap.put(textureName, StarLoaderTexture.newIconTexture(ModTemplate.getInstance().getJarBufferedImage(TEXTURE_PATH + texturePath + ".png")));
-						else textureMap.put(textureName, StarLoaderTexture.newBlockTexture(ModTemplate.getInstance().getJarBufferedImage(TEXTURE_PATH + texturePath + ".png")));
+						if(textureName.endsWith("icon")) textureMap.put(textureName, StarLoaderTexture.newIconTexture(ImmersivePlanets.getInstance().getJarBufferedImage(TEXTURE_PATH + texturePath + ".png")));
+						else textureMap.put(textureName, StarLoaderTexture.newBlockTexture(ImmersivePlanets.getInstance().getJarBufferedImage(TEXTURE_PATH + texturePath + ".png")));
 					} catch(Exception exception) {
-						ModTemplate.logError("Failed to load texture \"" + texturePath + "\"", exception);
+						ImmersivePlanets.logError("Failed to load texture \"" + texturePath + "\"", exception);
 					}
 				}
 
 				//Load Sprites
 				for(String spriteName : spriteNames) {
 					try {
-						Sprite sprite = StarLoaderTexture.newSprite(ModTemplate.getInstance().getJarBufferedImage(SPRITE_PATH + spriteName + ".png"), ModTemplate.getInstance(), spriteName, false, false);
+						Sprite sprite = StarLoaderTexture.newSprite(ImmersivePlanets.getInstance().getJarBufferedImage(SPRITE_PATH + spriteName + ".png"), ImmersivePlanets.getInstance(), spriteName, false, false);
 						sprite.setName(spriteName);
 						spriteMap.put(spriteName, sprite);
 					} catch(Exception exception) {
-						ModTemplate.logError("Failed to load sprite \"" + spriteName + "\"", exception);
+						ImmersivePlanets.logError("Failed to load sprite \"" + spriteName + "\"", exception);
 					}
 				}
 			}

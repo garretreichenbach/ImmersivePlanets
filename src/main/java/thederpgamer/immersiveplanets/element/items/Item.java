@@ -1,9 +1,9 @@
-package thederpgamer.modtemplate.element.items;
+package thederpgamer.immersiveplanets.element.items;
 
 import api.config.BlockConfig;
 import org.schema.game.common.data.element.ElementCategory;
 import org.schema.game.common.data.element.ElementInformation;
-import thederpgamer.modtemplate.ModTemplate;
+import thederpgamer.immersiveplanets.ImmersivePlanets;
 
 /**
  * <Description>
@@ -16,7 +16,7 @@ public abstract class Item {
 	protected ElementInformation itemInfo;
 
 	public Item(String name, ElementCategory category) {
-		itemInfo = BlockConfig.newElement(ModTemplate.getInstance(), name, new short[6]);
+		itemInfo = BlockConfig.newElement(ImmersivePlanets.getInstance(), name, new short[6]);
 		itemInfo.setPlacable(false);
 		itemInfo.setPhysical(false);
 		BlockConfig.setElementCategory(itemInfo, category);

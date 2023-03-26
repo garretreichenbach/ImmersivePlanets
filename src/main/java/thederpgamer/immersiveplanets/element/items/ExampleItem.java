@@ -1,9 +1,9 @@
-package thederpgamer.modtemplate.element.items;
+package thederpgamer.immersiveplanets.element.items;
 
 import api.config.BlockConfig;
 import org.schema.game.common.data.element.ElementKeyMap;
 import org.schema.schine.graphicsengine.core.GraphicsContext;
-import thederpgamer.modtemplate.element.ElementManager;
+import thederpgamer.immersiveplanets.element.ElementManager;
 
 public class ExampleItem extends Item {
 
